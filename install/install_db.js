@@ -1,7 +1,7 @@
 "use strict"
 
 const mongoose = require('mongoose');
-const conection = require('.lib/connect_db');
+const conection = require('./lib/connect_db');
 const readDataFile = require('./readDataFile');
 const adDAO = require ('./adDAO');
 
