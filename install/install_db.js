@@ -13,7 +13,7 @@ function loadAdvertisements(callback) {
 
         let i = 0;
         if(list.length > 0){
-            mongoose.db.anuncios.deleteMany({} (err, result) => {
+            mongoose.db.anuncios.deleteMany({}, (err, result) => {
                if (err) {
                     console.log(err);
                 }
@@ -34,7 +34,7 @@ function loadAdvertisements(callback) {
                 if(err){
                     return callback(err);
                 }
-                console.log('Registro insertado: ';
+                console.log('Registro insertado: ');
             });
         }
     });
