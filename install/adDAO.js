@@ -1,7 +1,6 @@
 "use strict"
 
 const mongoose = require('mongoose');
-
 const mmodelAd = require('../models/Ad');
 
 // Alta Anuncio

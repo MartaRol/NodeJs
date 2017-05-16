@@ -1,9 +1,7 @@
 "use strict"
 
 const mongoose = require('mongoose');
-
-let User = require('../models/Usuario');
-const mmodelUser = mongoose.model('User');
+const mmodelUser = require('../models/User');
 
 
 // Alta Usuario
@@ -45,6 +43,17 @@ exports.findUser = function (idUser, callback){
 //Borrar Usuario
 exports.deleteUser = function (idUser, callback ){
     mmodelUser.remove({_id: idUser}, (err, User) => {
+        if (err){
+            return callback (err);
+        }
+
+        callback (null, User);
+    });
+}
+
+//Borrar todos los usuarios
+exports.deleteAll = function ( callback ){
+    mmodelUser.remove({}, (err, User) => {
         if (err){
             return callback (err);
         }

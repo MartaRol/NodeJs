@@ -3,27 +3,38 @@
 const mongoose = require('mongoose');
 
 //Definimos el esquema
-const anuncioSchema = mongoose.Schema({
-    nombre: {
+const adSchema = mongoose.Schema({
+    name: {
         type: String,
         index: true
     },    
-    venta: {
+    sale: {
         type: Boolean, 
         index: true
     },
-    precio: {
+    price: {
         type: Number,
         index: true
     },     
-    foto: String,     
+    image: String,     
     tags: {
         type: [String],
         index: true
     } 
 }); 
+
+//Método estático
+adSchema.statics.list = function(filter, limit, skip, fields, sort, callback) {
+  const query = Ad.find(filter);
+  query.limit(limit);
+  query.skip(skip);
+  //Campos
+  query.select(fields);
+  query.sort(sort);
+  query.exec(callback);
+};
  
  //Creamos el modelo
- const Anuncio = mongoose.model('Anuncio', anuncioSchema);
+ const Ad= mongoose.model('Ad', adSchema);
 
- module.exports = Anuncio;
+ module.exports = Ad;

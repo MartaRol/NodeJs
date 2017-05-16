@@ -1,0 +1,14 @@
+{   
+	"user": [
+		{
+		  "name": "Marta",
+		  "email": "mrmartaroldan@gmail.com",
+		  "key": "1234"
+		},
+		{
+		  "name": "Admin",
+		  "email": "admin@gmail.com",
+		  "key": "admin"
+		}
+    ]
+} 
