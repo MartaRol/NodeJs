@@ -3,7 +3,7 @@
 const fs = require('fs');
 
 function readDataFile(nameFile, callback) {
-    const file = ("./install" + nombreFichero);
+    const file = ("./install/" + nameFile);
     let dataJson ={};
 
     fs.readFile(file, (err, data) => {

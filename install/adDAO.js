@@ -2,9 +2,7 @@
 
 const mongoose = require('mongoose');
 
-let Ad = require('../models/Ad');
-const mmodelAd = mongoose.model('Ad');
-
+const mmodelAd = require('../models/Ad');
 
 // Alta Anuncio
 exports.addAd = function (newAd, callback){
@@ -45,6 +43,17 @@ exports.findAd = function (idAd, callback){
 //Borrar Anuncio
 exports.deleteAd = function (idAd, callback ){
     mmodelAd.remove({_id: idAd}, (err, Ad) => {
+        if (err){
+            return callback (err);
+        }
+
+        callback (null, Ad);
+    });
+}
+
+//Borrar todos los Anuncios
+exports.deleteAll = function ( callback ){
+    mmodelAd.remove({}, (err, Ad) => {
         if (err){
             return callback (err);
         }
