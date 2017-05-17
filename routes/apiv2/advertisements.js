@@ -3,6 +3,7 @@
 var express = require('express');
 var router = express.Router();
 const Ad = require('../../models/Ad');
+const path = require('path');  
 const basicAuth = require('../../lib/basicAuth');
 //const basicAuth = require('basic-auth');
 
@@ -70,6 +71,12 @@ router.get('/', (req, res, next) => {
     if (err) {
       next(err); // le decimos a express que devuelva el error
       return;
+    }
+
+    //Recorro la lista de anuncios, le concateno la url en local
+    for (let i = 0; i< listAds.length -1; i++) {
+      console.log(listAds[i].image);
+            listAds[i].image = path.join('/public/image/ads', listAds[i].image);
     }
 
     res.json({ success: true, result: listAds });
