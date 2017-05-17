@@ -33,6 +33,7 @@ app.use((req,res,next) =>{
 app.use('/',              require('./routes/index'));
 app.use('/apiv1/advertisements', require('./routes/apiv1/advertisements'));
 app.use('/apiv2/advertisements', require('./routes/apiv2/advertisements'));
+app.use('/apiv2/users', require('./routes/apiv2/users'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
