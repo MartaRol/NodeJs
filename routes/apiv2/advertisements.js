@@ -6,19 +6,6 @@ const Ad = require('../../models/Ad');
 const basicAuth = require('../../lib/basicAuth');
 //const basicAuth = require('basic-auth');
 
-/*router.get('/', (req, res, next) => {
-  Ad.find().exec((err, listAds) => {
-    if (err){
-      next(err);
-      return;
-    }
-
-      res.json({success: true, result: listAds});
-  });
-
-
-});*/
-
 router.get('/', (req, res, next) => {
 
   const name = req.query.name;
@@ -91,17 +78,30 @@ router.get('/', (req, res, next) => {
 
 });
 
-// POST /apiv1/advertisements
+// POST /apiv2/advertisements
 router.post('/', (req, res, next) => {
-  console.log(req.body);
   // creamos un objeto de tipo Anuncio
   const ad = new Ad(req.body);
-  // lo guardamos en la base de datos
+  // Almaceno en BBDD
   ad.save((err, currentAd) => {
     if (err) {
       next(err);
       return;
     }
+    res.json({ success: true, result: currentAd});
+  });
+});
+
+//DELETE Eliminar anuncios
+router.delete('/:id', (req, res, next) => {
+  const id = req.params.id;
+  console.log("Id:" , id);
+  Ad.remove({_id: id}, (err, currentAd) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    //Devuelve si ha sido eliminado
     res.json({ success: true, result: currentAd});
   });
 });
