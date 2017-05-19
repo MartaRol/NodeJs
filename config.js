@@ -3,6 +3,6 @@
 module.exports = {  
   jwt:{
     TOKEN_SECRET: "tokenultrasecreto",
-    expiresInMinutes: "1440"
+    expiresInSeconds: "86400"
   }
 };

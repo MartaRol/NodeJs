@@ -24,7 +24,7 @@ router.post('/', (req, res, next) => {
             }else{
                 //Si se encuentra el usuario y la contraseña es correcta se crea el token
                 var token = jwt.sign(user, config.jwt.TOKEN_SECRET, {
-                    expiresIn: config.jwt.expiresInMinutes
+                    expiresIn: config.jwt.expiresInSeconds
                 });
                 res.json({ success: true, message: "Usuario autenticado correctamente", token: token});
             }

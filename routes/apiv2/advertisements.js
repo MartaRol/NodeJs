@@ -59,7 +59,6 @@ router.get('/', jwt,  (req, res, next) => {
   if(tags){
       //Recojo todos los tags que vienen separados por "," para tratarlos
       let allTags = tags.split(",");
-      console.log("Tags", allTags);
 
       filter.tags = {$in: allTags};
   }

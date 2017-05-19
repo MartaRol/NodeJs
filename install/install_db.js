@@ -31,7 +31,6 @@ function loadAdvertisements(callback) {
             // un bucle asíncrono insertando en la base de datos
             async.concat(dataJson.ad, function iterador(item, callbackIterador) {
                 const ad = new mmodelAd(item);
-                console.log(ad.image);
                 ad.image = path.join('/image/ads', ad.image);
                  ad.save(item, (err, ad) =>{
                     if(err){
