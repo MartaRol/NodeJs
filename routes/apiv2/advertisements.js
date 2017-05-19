@@ -3,16 +3,15 @@
 var express = require('express');
 var router = express.Router();
 const Ad = require('../../models/Ad');
-const path = require('path');  
-const basicAuth = require('../../lib/basicAuth');
-//const basicAuth = require('basic-auth');
+const jwt = require('../../lib/jsonWebToken');
 
-router.get('/', (req, res, next) => {
+router.get('/', jwt,  (req, res, next) => {
 
   const name = req.query.name;
   const sale = req.query.sale;
   const price = req.query.price;
   const tags = req.query.tags;
+  const includeTotal = req.query.includeTotal;
   const limit = parseInt(req.query.limit);
   const skip = parseInt(req.query.skip);
   const fields = req.query.fields;
@@ -65,24 +64,32 @@ router.get('/', (req, res, next) => {
       filter.tags = {$in: allTags};
   }
 
-  console.log("Filtro" , filter);
-
   Ad.list(filter, limit, skip, fields, sort, (err, listAds) => {
     if (err) {
       next(err); // le decimos a express que devuelva el error
       return;
     }
-
-    //Recorro la lista de anuncios, le concateno la url en local
-    for (let i = 0; i< listAds.length -1; i++) {
-      console.log(listAds[i].image);
-            listAds[i].image = path.join('/public/image/ads', listAds[i].image);
+    
+    if(includeTotal && includeTotal === 'true'){
+      var total = listAds.length
     }
-
-    res.json({ success: true, result: listAds });
+    res.json({ success: true, result: listAds, total });
 
   });
 
+});
+
+//GET Anuncio concreto
+router.get('/:id', (req, res, next) => {
+  const id = req.params.id;
+  Ad.findById({_id: id}, (err, currentAd) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    //Devuelve anuncio concreto
+    res.json({ success: true, result: currentAd});
+  });
 });
 
 // POST /apiv2/advertisements
@@ -102,7 +109,6 @@ router.post('/', (req, res, next) => {
 //DELETE Eliminar anuncios
 router.delete('/:id', (req, res, next) => {
   const id = req.params.id;
-  console.log("Id:" , id);
   Ad.remove({_id: id}, (err, currentAd) => {
     if (err) {
       next(err);
@@ -113,31 +119,5 @@ router.delete('/:id', (req, res, next) => {
   });
 });
 
-/*router.use((req, res, next) => {
-  const user = basicAuth(req);
-  console.log('User' , user);
-  if (!user){
-    res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
-    res.send(401, "Necesitas autenticación");
-    return;
-  }
-  next();
-});*/
-
-
-/* GET /apiv1/anuncios*/
-/*router.get('/', basicAuth, function(req, res, next) {
-
-  Ad.find().exec((err, advertisements)  => {
-    if (err){
-      next(err);
-      return;
-    }
-  });
-
-  res.json({ success: true, result: advertisements});
-});*/
-
-/* GET /apiv1/advertisements*/
 
 module.exports = router;

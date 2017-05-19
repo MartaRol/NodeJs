@@ -9,7 +9,6 @@ require('./lib/connect_db');
 require('./models/Ad');
 require('./models/User');
 
-
 var app = express();
 
 // view engine setup
@@ -32,9 +31,10 @@ app.use((req,res,next) =>{
 //Rutas de nuestra aplicación
 app.use('/',              require('./routes/index'));
 app.use('/apiv1/advertisements', require('./routes/apiv1/advertisements'));
-app.use('/apiv2/advertisements', require('./routes/apiv2/advertisements'));
-app.use('/apiv2/users', require('./routes/apiv2/users'));
-app.use('/apiv2/authentication', require('./routes/apiv2/authentication'));
+app.use('/advertisements', require('./routes/apiv2/advertisements'));
+app.use('/users', require('./routes/apiv2/users'));
+app.use('/tags', require('./routes/apiv2/tags'));
+app.use('/login', require('./routes/apiv2/login'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -60,7 +60,7 @@ app.use(function(err, req, res, next) {
 });
 
 function isAPI(req) {
-  return req.originalUrl.indexOf('/apiv') === 0;
+  return req.originalUrl.indexOf('/apiv1' || 'apiv2' ) === 0;
 }
 
 module.exports = app;

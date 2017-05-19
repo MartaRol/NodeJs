@@ -3,9 +3,11 @@
 const mongoose = require('mongoose');
 const connect_db = require('../lib/connect_db');
 const readDataFile = require('./readDataFile');
-const adDAO = require ('./adDAO');
-const userDAO = require('./userDAO');
 const async = require('async');
+const mmodelUser = require('../models/User');
+const mmodelAd = require('../models/Ad');
+const sha256 = require('sha256');
+const path = require('path');  
 
 let usersLoaded = false;
 let adsLoaded = false;
@@ -13,7 +15,7 @@ let adsLoaded = false;
 //Cargo los anuncios
 function loadAdvertisements(callback) {
     // elimino todos los anuncios
-    adDAO.deleteAll((err, result) => {
+    mmodelAd.remove({},(err, result) =>{
         if (err) {
             console.log(err);
         }
@@ -28,9 +30,11 @@ function loadAdvertisements(callback) {
             // cuando lo he leido voy a hacer
             // un bucle asíncrono insertando en la base de datos
             async.concat(dataJson.ad, function iterador(item, callbackIterador) {
-                adDAO.addAd(item, (err, ad) =>{
+                const ad = new mmodelAd(item);
+                console.log(ad.image);
+                ad.image = path.join('/image/ads', ad.image);
+                 ad.save(item, (err, ad) =>{
                     if(err){
-                        console.log("aaa");
                         return callbackIterador(err);
                     }
                     console.log(`Registro insertado: ${ad.name} (${ad._id})`);
@@ -62,7 +66,7 @@ loadAdvertisements(function(err, result) {
 
 function loadUsers(callback) {
     // elimino todos los usuarios
-    userDAO.deleteAll((err, result) => {
+     mmodelUser.remove({}, (err, result) => {
         if (err) {
             console.log(err);
         }
@@ -77,7 +81,9 @@ function loadUsers(callback) {
             // cuando lo he leido voy a hacer
             // un bucle asíncrono insertando en la base de datos
             async.concat(dataJson.user, function iterador(item, callbackIterador) {
-                userDAO.addUser(item, (err, user) =>{
+                const user = new mmodelUser(item);
+                user.key = sha256.x2(user.key);
+                user.save(item, (err, user) =>{
                     if(err){
                         return callbackIterador(err);
                     }
