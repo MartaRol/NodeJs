@@ -8,5 +8,13 @@ module.exports = {
   authentication_invalidate:{
     ES: "Autenticación inválida",
     EN: "Invalid authentication"
+  },
+  login_invalid_credentials:{
+    ES: "Necesita autenticación. Credenciales incorrectos",
+    EN: "You need authentication. Invalid credentials"
+  },
+  login_invalid_passwd:{
+    ES: "Contraseña incorrecta",
+    EN: "Invalid password"
   }
 };

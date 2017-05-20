@@ -4,7 +4,6 @@ var express = require('express');
 var router = express.Router();
 const User = require('../../models/User');
 const sha256 = require('sha256');
-const config = require('../../config');
 var jwt = require('jsonwebtoken');
 
 //GET Usuarios con filtro
