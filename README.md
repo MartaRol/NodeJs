@@ -1,4 +1,4 @@
-#Iniciar APP
+# Iniciar APP
 
 > npm install
 
@@ -49,7 +49,7 @@ http://localhost:3000/users
 #### Método 
 POST
 
-####Parámetros
+#### Parámetros
 - **name** : obligatorio
 - **email**: obligatorio
 - **key**: obligatorio
@@ -79,7 +79,7 @@ http://localhost:3000/users
 #### Método 
 GET
 
-####Parámetros
+#### Parámetros
 - **name** 
 - **email**
 - **key**
@@ -99,7 +99,7 @@ http://localhost:3000/users/*id*
 #### Método 
 GET
 
-####Ejemplo 
+#### Ejemplo 
 http://localhost:3000/users/5920b9865910dd0dd04281b8
 
 ### Borrar un usuario
@@ -112,7 +112,7 @@ http://localhost:3000/users/*id*
 #### Método 
 DELETE
 
-####Ejemplo 
+#### Ejemplo 
 http://localhost:3000/users/5920b9865910dd0dd04281b8
 
 ### Listar tags existentes
@@ -157,7 +157,7 @@ http://localhost:3000/advertisements/*id*
 #### Método 
 GET
 
-####Ejemplo 
+#### Ejemplo 
 http://localhost:3000/advertisements/5920b9865910dd0dd04281ba
 
 ### Subir un anuncio
@@ -170,7 +170,7 @@ http://localhost:3000/advertisements
 #### Método 
 POST
 
-####Parámetros
+#### Parámetros
 - **name** :
 - **sale**:
 - **price**:
@@ -186,10 +186,8 @@ http://localhost:3000/advertisements/*id*
 #### Método 
 DELETE
 
-####Ejemplo 
+#### Ejemplo 
 http://localhost:3000/advertisements/5920b9865910dd0dd04281ba
-'
-
 
 
 
