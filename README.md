@@ -64,7 +64,7 @@ http://localhost:3000/login
 #### Método 
 POST
 
-####Parámetros
+#### Parámetros
 - **name** : obligatorio
 - **email**: obligatorio
 - **key**: obligatorio
@@ -135,7 +135,7 @@ http://localhost:3000/advertisements
 #### Método 
 GET
 
-####Parámetros
+#### Parámetros
 - **name** : Que empiece por el dato buscado
 - **sale**: Especificar si el anuncio es de venta o de búsqueda
 - **price**: Rango de precio (Precio mín. y precio máx.) separado por guión (10-50)
