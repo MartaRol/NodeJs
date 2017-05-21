@@ -7,7 +7,8 @@ const config = require('../../utils/config');
 var jwt = require('jsonwebtoken');
 const sha256 = require('sha256');
 var errorTranslate = require('../../utils/errorTranslate');
-const errors = require('../../utils/errors');
+//const errors = require('../../utils/errors');
+const errors = require('../../utils/messages.json');
 
 router.post('/', (req, res, next) => {
     //Recojo el idioma
@@ -18,12 +19,12 @@ router.post('/', (req, res, next) => {
             return;
         }
         if(!user){
-            return errorTranslate(errors.login_invalid_credentials, res, language);
+            return errorTranslate(errors.LOGIN_USER_NOT_FOUND, res, language);
         }else {
 
             //Compruebo contraseña
             if(user.key != sha256.x2(req.body.key)){
-                return errorTranslate(errors.login_invalid_credentials, res, language);
+                return errorTranslate(errors.LOGIN_INVALID_PASSWORD, res, language);
             }else{
                 //Si se encuentra el usuario y la contraseña es correcta se crea el token
                 var token = jwt.sign(user, config.jwt.TOKEN_SECRET, {

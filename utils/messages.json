@@ -1,0 +1,31 @@
+{
+  "AUTHENTICATION_TOKEN":{
+    "es":"No se ha especificado ningún token",
+    "en":"No token specified"
+  },
+  "FAILED_AUTHENTICATE":{
+    "es":"Fallo al autenticar el token",
+    "en":"Failer to authenticate token"
+  },
+  "EMAIL_REQUIRED":{
+    "es":"El email es necesario",
+    "en":"Email is needed"
+  },
+  "KEY_REQUIRED":{
+    "es":"La contraseña es necesaria",
+    "en":"Password is needed"
+  },
+  "NAME_REQUIRED":{
+    "es":"El nombre es necesario",
+    "en":"Name is needed"
+  },
+  "LOGIN_USER_NOT_FOUND":{
+    "es":"Credenciales incorrectos. Usuario no encontrado",
+    "en":"Invalid credentials. User not found"
+  },
+  "LOGIN_INVALID_PASSWORD":{
+    "es":"Contraseña incorrecta",
+    "en":"Invalid password"
+  }
+
+}

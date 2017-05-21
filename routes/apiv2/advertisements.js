@@ -5,7 +5,7 @@ var router = express.Router();
 const Ad = require('../../models/Ad');
 const jwt = require('../../lib/jsonWebToken');
 
-router.get('/', jwt,  (req, res, next) => {
+router.get('/', jwt,  (req, res, next) =>
 
   const name = req.query.name;
   const sale = req.query.sale;
@@ -65,7 +65,7 @@ router.get('/', jwt,  (req, res, next) => {
 
   Ad.list(filter, limit, skip, fields, sort, (err, listAds) => {
     if (err) {
-      next(err); // le decimos a express que devuelva el error
+      next(err);
       return;
     }
     
